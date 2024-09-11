@@ -10,6 +10,6 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends CrudRepository<User, UUID> {
 
-    @Query(value = "SELECT * FROM user WHERE email=? AND password=?", nativeQuery = true)
-    User findByEmailAndPassword(String email, String password);
+    @Query(value = "SELECT * FROM user WHERE email=?", nativeQuery = true)
+    User findByEmail(String email);
 }
