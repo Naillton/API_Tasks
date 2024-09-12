@@ -10,9 +10,6 @@ import java.util.UUID;
 @Repository
 public interface TaskRepository extends CrudRepository<Tasks, UUID> {
 
-    @Query(value = "SELECT * FROM tasks WHERE id=?", nativeQuery = true)
-    Tasks findTaskById(UUID id);
-
     @Query(value = "SELECT * FROM tasks WHERE status=?", nativeQuery = true)
     Tasks findTaskByStatus(String status);
 }

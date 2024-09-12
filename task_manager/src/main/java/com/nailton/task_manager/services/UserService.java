@@ -47,6 +47,15 @@ public class UserService {
                 .sign(algorithm);
     }
 
+    public String validateToken(String token) {
+        Algorithm algorithm = Algorithm.HMAC256(secret);
+        return JWT.require(algorithm)
+                .withIssuer("API_TASK")
+                .build()
+                .verify(token)
+                .getSubject();
+    }
+
     public List<User> getUsers() {
         return (List<User>) this.userRepository.findAll();
     }
@@ -72,6 +81,10 @@ public class UserService {
 
     public void deleteUser(UUID id) {
         this.userRepository.deleteById(id);
+    }
+
+    public User findUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 
     public String login(String email, String password) {
